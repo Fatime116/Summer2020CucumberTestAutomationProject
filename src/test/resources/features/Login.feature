@@ -6,7 +6,7 @@ Feature: As user I want to be able to login under different roles
     #read from configuration properties as sales manager since we did not provide any user
     Then user should see dashboard page
 
-  @parametrized_test  @BUG_VY2323
+  @parametrized_test  @BUG_VY2323 @smoke_test
   Scenario: Parametrized login
     Given user is on the login page
     When user logs in as a "salesmanager"
