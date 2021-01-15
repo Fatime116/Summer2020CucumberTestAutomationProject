@@ -51,7 +51,7 @@ public class LoginStepDefinitions {
         Assert.assertEquals("Title is not correct!!",expectedDashBoardName,actualDashBoardName);//in Junit comments comes before
         System.out.println("I see the Dashboard page!");
 //        driver.quit();
-        Driver.closeDriver();;
+        Driver.closeDriver();
     }
 
     //When user logs in as a "driver" --> public void user_logs_in_as_a(String string) -> loginPage.login(string); -> public void login(String role) { if role == "" do this..}
@@ -64,12 +64,24 @@ public class LoginStepDefinitions {
 
     }
 
+    //When user logs in with "storemanagers85" and "wrong" password
+    //string is whatever value inside of first "" , which is storemanagers85 , String string ="storemanagers85"
+    //string2 is whatever value inside of second "" , which is wrong, String string2 = "wrong"
     @When("user logs in with {string} and {string} password")
     public void user_logs_in_with_and_password(String string, String string2) {
+     loginPage.login(string,string2);
 
     }
+
+    //expected text: string ----Invalid user name or password.
     @Then("user verifies that {string} message is displayed")
-    public void user_verifies_that_message_is_displayed(String string) {
+    public void user_verifies_that_message_is_displayed(String expectedWarningMessage) {
+
+        String actualWarningMessage = loginPage.getWarningMessageText();
+        Assert.assertEquals(expectedWarningMessage,actualWarningMessage);
+       // Assert.assertTrue(loginPage.warningMessage.isDisplayed());  //if the webelement is setted as public
+
+
 
     }
 }

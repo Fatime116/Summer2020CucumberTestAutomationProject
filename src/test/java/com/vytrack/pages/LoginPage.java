@@ -16,13 +16,25 @@ public class LoginPage extends BasePage{
     //To not use web elements directly in step definition classes
     //helps to prevent code duplication and keep step definitions CLEAN
     @FindBy(id = "prependedInput")
-    public WebElement username;//will prevent u using this WebElement directly in step_definitions
+    private WebElement username;//will prevent u using this WebElement directly in step_definitions
 
     @FindBy(id="prependedInput2")
     private WebElement password;
 
     @FindBy(name="_submit")
     private WebElement submitButton;
+
+    @FindBy(xpath="//div[@class='alert alert-error']")
+    public WebElement warningMessage;//when we make it private, we can enforce everyone to create methods here
+
+    public String getWarningMessageText()  {
+        try {//used try catch block, because we use these methods again in step_definitions
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return warningMessage.getText().trim();
+    }
 
     public void login(String usernameValue, String passwordValue) {
         username.sendKeys(usernameValue);
@@ -56,6 +68,9 @@ public class LoginPage extends BasePage{
     }
 
   //  public void login(String...args){}//dynamic number of arguments
+
+
+
 
 
 
