@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginStepDefinitions {
 
     LoginPage loginPage = new LoginPage();
-    WebDriver driver;
+   // WebDriver driver; since we are using POM, driver object did not use this class
 
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
@@ -23,7 +23,7 @@ public class LoginStepDefinitions {
 //        driver = new ChromeDriver();
 //        driver.get(ConfigurationReader.getProperty("url"));
 
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+        Driver.getDriver().get("http://qa2.vytrack.com");
 
     }
 
@@ -38,6 +38,7 @@ public class LoginStepDefinitions {
         //page object contains WebElements and methods,
 
         loginPage.login();
+        Thread.sleep(3000);
 
     }
     @Then("user should see dashboard page")
@@ -45,11 +46,30 @@ public class LoginStepDefinitions {
         String expectedDashBoardName = "Dashboard";
 
         //title class attribute value always the same and present for all tab header
-        String actualDashBoardName = driver.findElement(By.cssSelector("h1[class='oro-subtitle']")).getText().trim();
+       // String actualDashBoardName = driver.findElement(By.cssSelector("h1[class='oro-subtitle']")).getText().trim();
+        String actualDashBoardName = loginPage.getPageSubTitleText().trim();
         Assert.assertEquals("Title is not correct!!",expectedDashBoardName,actualDashBoardName);//in Junit comments comes before
-
+        System.out.println("I see the Dashboard page!");
 //        driver.quit();
         Driver.closeDriver();;
     }
 
+    //When user logs in as a "driver" --> public void user_logs_in_as_a(String string) -> loginPage.login(string); -> public void login(String role) { if role == "" do this..}
+    //When user logs in as a "sales manager"
+    //When user logs in as a "store manager"
+    @When("user logs in as a {string}")
+    public void user_logs_in_as_a(String string) {
+
+        loginPage.login(string );
+
+    }
+
+    @When("user logs in with {string} and {string} password")
+    public void user_logs_in_with_and_password(String string, String string2) {
+
+    }
+    @Then("user verifies that {string} message is displayed")
+    public void user_verifies_that_message_is_displayed(String string) {
+
+    }
 }

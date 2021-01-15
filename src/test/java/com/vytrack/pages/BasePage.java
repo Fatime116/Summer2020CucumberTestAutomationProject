@@ -14,7 +14,7 @@ public abstract class BasePage {//it is abstract class, no one can create object
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    @FindBy(className="oro-subtitle")
+    @FindBy(className = "oro-subtitle")
     protected WebElement pageSubTitle;//we can make it visible to the child classes(page class), still cannot have this webElement direct get access to step_definitions class
 
 
@@ -24,6 +24,8 @@ public abstract class BasePage {//it is abstract class, no one can create object
     //step definitions class are located in different package, and not going to inherit this class,so step_definition does not have any access to it
 
     public String getPageSubTitleText(){ //this is instance method, in can inherit to child class
-        return pageSubTitle.getText().trim();
+        return pageSubTitle.getText();
     }
+
+
 }
