@@ -1,5 +1,7 @@
 package com.vytrack.step_definitions;
 
+import com.vytrack.utils.ConfigurationReader;
+import com.vytrack.utils.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,17 +17,20 @@ public class LoginStepDefinitions {
    WebDriver driver;
     @Given("user is on the login page")
     public void user_is_on_the_login_page() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get("http://qa1.vytrack.com");
+        //according to POM, driver cannot be instantiated here
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        driver.get(ConfigurationReader.getProperty("url"));
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+
 
     }
 
     @When("user logs in")
     public void user_logs_in() throws InterruptedException {
-
-     driver.findElement(By.id(("prependedInput"))).sendKeys("salesmanager110");
-     driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
+   //according to POM, elements are directly specified here
+     driver.findElement(By.id(("prependedInput"))).sendKeys(ConfigurationReader.getProperty("salesmanager110"));
+     driver.findElement(By.id("prependedInput2")).sendKeys(ConfigurationReader.getProperty("password"), Keys.ENTER);
      Thread.sleep(3000);
     }
     @Then("user should see dashboard page")
