@@ -32,9 +32,7 @@ public class Driver {
                     throw new RuntimeException("No such a browser yet!");
             }
         }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        return driver;
+          return driver;
     }
 
     public static void closeDriver(){

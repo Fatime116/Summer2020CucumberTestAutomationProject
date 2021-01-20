@@ -1,9 +1,14 @@
 package com.vytrack.pages;
 
 import com.vytrack.utils.Driver;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {//it is abstract class, no one can create object from this class, it is a base class, it is not page class
     //it does not correspond to any page in the application
@@ -23,9 +28,42 @@ public abstract class BasePage {//it is abstract class, no one can create object
     //protected: makes it available within the same package, and subclasses that inherits this class
     //step definitions class are located in different package, and not going to inherit this class,so step_definition does not have any access to it
 
-    public String getPageSubTitleText(){ //this is instance method, in can inherit to child class
+
+    public String getPageSubTitleText() {//this is instance method, it can inherit to child class
         return pageSubTitle.getText();
     }
 
+    /**
+     * Method for navigation in vytrack app
+     *
+     * @param tabName     , for example: Fleet, Dashboard, Sales, Activities..
+     * @param module, one of the values that will be visible after clicking on the tab.
+     *                For Fleet, these are the modules: Vehicles, Vehicle Odometer, Vehicle Costs, etc..
+     */
+    public void navigateTo(String tabName, String module) {
+
+
+
+//        Driver.getDriver().findElement(By.linkText(tabName)).click();
+//        Driver.getDriver().findElement(By.linkText(Module)).click();
+
+//    (//*[contains(text(),'Fleet')])[3]
+//    //*[contains(text(),'Fleet') and @class='title title-level-1']
+
+        // we have 8 tabs, Like Dashboard, Fleet, Customers,Sales, everytime we pass the tabName, we will locate respective tab
+        //the reason we put this in this BasePage is that attribute are all same using custom xpath
+        //we stored all the common webelements here
+        String tabXpath = "//*[contains(text(),'" + tabName + "') and @class='title title-level-1']";
+        String moduleXpath = "//*[contains(text(),'" + module + "') and @class='title title-level-2']";
+
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),30);
+        WebElement tabElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(tabXpath)));//we are waiting presence of element  visible in the DOM
+        wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
+
+        WebElement moduleElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleXpath)));
+        wait.until(ExpectedConditions.elementToBeClickable(moduleElement)).click();
+
+
+    }
 
 }

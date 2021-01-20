@@ -47,7 +47,9 @@ public class LoginStepDefinitions {
 
         //title class attribute value always the same and present for all tab header
        // String actualDashBoardName = driver.findElement(By.cssSelector("h1[class='oro-subtitle']")).getText().trim();
-        String actualDashBoardName = loginPage.getPageSubTitleText().trim();
+        String actualDashBoardName = loginPage.getPageSubTitleText();
+        System.out.println("actualDashBoardName = " + actualDashBoardName);
+
         Assert.assertEquals("Title is not correct!!",expectedDashBoardName,actualDashBoardName);//in Junit comments comes before
         System.out.println("I see the Dashboard page!");
 //        driver.quit();
@@ -58,9 +60,10 @@ public class LoginStepDefinitions {
     //When user logs in as a "sales manager"
     //When user logs in as a "store manager"
     @When("user logs in as a {string}")
-    public void user_logs_in_as_a(String string) {
+    public void user_logs_in_as_a(String string) throws InterruptedException{
 
         loginPage.login(string );
+        Thread.sleep(3000);
 
     }
 
