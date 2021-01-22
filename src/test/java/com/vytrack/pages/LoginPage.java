@@ -6,16 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage{
-
+     //we put PageFactory.initElements(Driver.getDriver(), this); in the BasePage class constructor,
      //Constructor cannot be inherited, but child class can call parent class constructor
     //when we create object from this class, jvm will add runtime constructor, and this constructor can
     //call BasePage constructor, so initElements method will gets executed once it extends to it and create object
 
 
 
-    //To not use web elements directly in step definition classes
+    //private WebElement: To not use web elements directly in step definition classes
     //helps to prevent code duplication and keep step definitions CLEAN
-    @FindBy(id = "prependedInput")
+
+    @FindBy(id = "prependedInput")//to make this @FindBy work, we need to use PageFactory class init elements method
     private WebElement username;//will prevent u using this WebElement directly in step_definitions
 
     @FindBy(id="prependedInput2")
@@ -27,7 +28,7 @@ public class LoginPage extends BasePage{
     @FindBy(xpath="//div[@class='alert alert-error']")
     public WebElement warningMessage;//when we make it private, we can enforce everyone to create methods here
 
-    public String getWarningMessageText()  {
+    public String getWarningMessageText()  {//we make everyone enforce to use method instead of webElements, so =that our step_definitions class is clean
         try {//used try catch block, because we use these methods again in step_definitions
             Thread.sleep(3000);
         } catch (InterruptedException e) {

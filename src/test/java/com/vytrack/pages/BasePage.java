@@ -17,7 +17,9 @@ public abstract class BasePage {//it is abstract class, no one can create object
 
     public BasePage(){
         PageFactory.initElements(Driver.getDriver(),this);
-    }
+    }////once object is created from this class, this line will be gets executed
+    //first it will look for driver instance, then it will initialize usernameElement WebElement, give them life, otherwise this webElement value will be null
+    //so @FindBy annotation will find that Element(@FindBy(name="ctl00$MainContent$username")) and assign it to the usernameElement
 
     @FindBy(className = "oro-subtitle")
     protected WebElement pageSubTitle;//we can make it visible to the child classes(page class), still cannot have this webElement direct get access to step_definitions class
