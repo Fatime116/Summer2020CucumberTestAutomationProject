@@ -21,6 +21,13 @@ public class BrowserUtils {
     wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
+    public static void enterText(WebElement element,String text){
+
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.clear();
+        element.sendKeys(text);
+        System.out.println("Enter Text: " + text);
+    }
     public static void clickWithJS(WebElement element){
 
         wait.until(ExpectedConditions.elementToBeClickable(element));//explicit wait: wait for specific webelement to be clickable or  present in the DOM
