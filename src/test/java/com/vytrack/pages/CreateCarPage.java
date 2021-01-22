@@ -28,7 +28,7 @@ public class CreateCarPage extends BasePage {
         System.out.println("Clicking on 'Create car' button");
     }
 
-    public void enterLicensePlate(String LicensePlate){//this LicensePlate is coming from our feature file
+    public void enterLicensePlate(String LicensePlate) {//this LicensePlate is coming from our feature file
 
 //        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
 //        wait.until(ExpectedConditions.visibilityOf(licensePlateInputBox));
@@ -36,8 +36,17 @@ public class CreateCarPage extends BasePage {
 //        licensePlateInputBox.clear();//before entering the text, we need to clear inout box
 //        licensePlateInputBox.sendKeys(LicensePlate);
 
-        BrowserUtils.enterText(licensePlateInputBox,LicensePlate);//call this from Browser Utils class
+        BrowserUtils.enterText(licensePlateInputBox, LicensePlate);//call this from Browser Utils class
+        //                       WebElement,       String that we want to Enter--->SDET
+
+        /*
+         * sometimes, for very long string webdriver might enter text not fully. so for this issue we can add extra waits
+         *         element.sendKeys(text);
+         *         wait.until(ExpectedConditions.attributeToBe(element,"value",text));//webDriver will wait until text you enter are completely entered
+         *
+         *
+         */
+
 
     }
-
 }

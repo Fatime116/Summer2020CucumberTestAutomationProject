@@ -26,8 +26,24 @@ public class BrowserUtils {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(text);
+        wait.until(ExpectedConditions.attributeToBe(element,"value",text));//webDriver will wait until text you enter are completely entered
         System.out.println("Enter Text: " + text);
     }
+    /**
+     * For instance, selenium webdriver is trying to enter the text:
+     * Expected text input  actual text input
+     *
+     * [java is great] --> [java is g]
+     *
+     * for some reason, selenium jumps to the next step without finishing text input here
+     *
+     * to prevent this issue, we need to make it wait until text is completely entered.
+     *
+     * How to do that?
+     *
+     * As we know, text is stored in the value attribute. So we need to wait until value attribute
+     * of the element will obtain expected text.
+     */
     public static void clickWithJS(WebElement element){
 
         wait.until(ExpectedConditions.elementToBeClickable(element));//explicit wait: wait for specific webelement to be clickable or  present in the DOM
