@@ -39,6 +39,7 @@ public class CreateCarPage extends BasePage {
         BrowserUtils.enterText(licensePlateInputBox, LicensePlate);//call this from Browser Utils class
         //                       WebElement,       String that we want to Enter--->SDET
 
+
         /*
          * sometimes, for very long string webdriver might enter text not fully. so for this issue we can add extra waits
          *         element.sendKeys(text);
@@ -46,7 +47,11 @@ public class CreateCarPage extends BasePage {
          *
          *
          */
-
-
     }
+
+    public void enterModelYear(String ModelYear){
+
+        BrowserUtils.enterText(modelYearInputBox,ModelYear);
+    }
+
 }

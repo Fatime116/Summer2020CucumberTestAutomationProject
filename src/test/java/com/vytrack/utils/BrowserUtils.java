@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BrowserUtils {
 
     private static WebDriverWait wait = new WebDriverWait(Driver.getDriver(),30);
+
     public static void wait(int seconds){
 
         try {
@@ -20,6 +21,8 @@ public class BrowserUtils {
     public static void clickOnElement(WebElement element){
     wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
+
+
 
     public static void enterText(WebElement element,String text){
 
@@ -44,6 +47,8 @@ public class BrowserUtils {
      * As we know, text is stored in the value attribute. So we need to wait until value attribute
      * of the element will obtain expected text.
      */
+
+
     public static void clickWithJS(WebElement element){
 
         wait.until(ExpectedConditions.elementToBeClickable(element));//explicit wait: wait for specific webelement to be clickable or  present in the DOM
