@@ -84,6 +84,7 @@ public abstract class BasePage {//it is abstract class, no one can create object
 
         WebElement moduleElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(moduleXpath)));
         wait.until(ExpectedConditions.elementToBeClickable(moduleElement)).click();
+       //by default, explicit wait will check the conditions every 500 millisecond if the condition is true or not
 
         //wait until loader mask disappears
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
