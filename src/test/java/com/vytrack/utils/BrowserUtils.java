@@ -19,7 +19,12 @@ public class BrowserUtils {
     }
 
     public static void clickOnElement(WebElement element){
+//        BrowserUtils.wait(2);
     wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    }
+
+    public static void elementToBeVisible(WebElement element){
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
 

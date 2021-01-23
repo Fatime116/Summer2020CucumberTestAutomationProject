@@ -59,7 +59,24 @@ public class CreateCarStepDefinitions {
 
 
         createCarPage.enterLicensePlate(map.get("License Plate"));
+
         createCarPage.enterModelYear(map.get("Model Year"));
+        //createCarPage.enterModelYear("2021");
+
+        /*
+        public void enterModelYear(String ModelYear){
+        BrowserUtils.enterText(modelYearInputBox,ModelYear);
+            }
+
+
+       public static void enterText(WebElement element,String text){
+        wait.until(ExpectedConditions.visibilityOf(element));
+        element.clear();
+        element.sendKeys(text);
+        wait.until(ExpectedConditions.attributeToBe(element,"value",text));//webDriver will wait until text you enter are completely entered
+        System.out.println("Enter Text: " + text);
+    }
+         */
 
     }
 
