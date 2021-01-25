@@ -18,9 +18,9 @@ public class BrowserUtils {
         }
     }
 
-    public static void clickOnElement(WebElement element){
-//        BrowserUtils.wait(2);
-    wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    public static void clickOnElement(WebElement element) {
+
+        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
     public static void elementToBeVisible(WebElement element){
@@ -35,7 +35,7 @@ public class BrowserUtils {
         element.clear();
         element.sendKeys(text);
         wait.until(ExpectedConditions.attributeToBe(element,"value",text));//webDriver will wait until text you enter are completely entered
-        System.out.println("Enter Text: " + text);
+        System.out.println("Enter Text: " + text);//just to make sure we are entering right text
     }
     /**
      * For instance, selenium webdriver is trying to enter the text:

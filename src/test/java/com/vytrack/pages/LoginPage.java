@@ -12,7 +12,6 @@ public class LoginPage extends BasePage{
     //call BasePage constructor, so initElements method will gets executed once it extends to it and create object
 
 
-
     //private WebElement: To not use web elements directly in step definition classes
     //helps to prevent code duplication and keep step definitions CLEAN
 

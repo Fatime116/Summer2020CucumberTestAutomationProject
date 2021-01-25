@@ -1,6 +1,7 @@
 package com.vytrack.step_definitions;
 
 import com.vytrack.pages.LoginPage;
+import com.vytrack.utils.BrowserUtils;
 import com.vytrack.utils.ConfigurationReader;
 import com.vytrack.utils.Driver;
 import io.cucumber.java.en.Given;
@@ -54,6 +55,14 @@ public class LoginStepDefinitions {
         System.out.println("I see the Dashboard page!");
 //        driver.quit();
         Driver.closeDriver();
+    }
+
+    @Then("user should see {string} page")
+    public void user_should_see_page(String string) {
+       String  expected = string;
+
+       String actual = loginPage.getPageSubTitleText().trim();
+       Assert.assertEquals("Page title is not correct",expected,actual);
     }
 
     //When user logs in as a "driver" --> public void user_logs_in_as_a(String string) -> loginPage.login(string); -> public void login(String role) { if role == "" do this..}

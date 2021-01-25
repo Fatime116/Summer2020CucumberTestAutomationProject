@@ -47,6 +47,7 @@ public abstract class BasePage {//it is abstract class, no one can create object
 
 
     public String getPageSubTitleText() {//this is instance method, it can inherit to child class
+        BrowserUtils.elementToBeVisible(pageSubTitle);
         return pageSubTitle.getText();
     }
 
@@ -75,9 +76,12 @@ public abstract class BasePage {//it is abstract class, no one can create object
         String moduleXpath = "//*[contains(text(),'" + module + "') and @class='title title-level-2']";
 
         //wait until loader mask disappears
-        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
+        //because loader mask is a very big problem for this application, we need to wait until that loader screen is disappears, and until then it will wait the element that we need is there, and until that element that we are looking for is there to be clickable or visible, then we click that or get the text from that element
+        //Sometimes Page is loaded, but it keeps calling the server to retrieve the data. Meanwhile since page is not ready, page is showing the spinner, when we are calling the selenium, we are waiting for element to be clickable, element is clickable, but because of that screen that has spinner spins, our click has failed.
+        //That spin also part of DOM, we just need to locate it, and use explicit wait and use invisibilityOfElement until this element is completely invisible.
+        wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));//
 
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(3);//hard coded wait, if nothing works
         //wait for presence and ability co click on element
         WebElement tabElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(tabXpath)));
         wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
@@ -89,7 +93,7 @@ public abstract class BasePage {//it is abstract class, no one can create object
         //wait until loader mask disappears
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));
 
-        BrowserUtils.wait(3);
+        BrowserUtils.wait(3);//hard coded wait, if nothing works
     }
 
     public void clickSaveAndClose(){

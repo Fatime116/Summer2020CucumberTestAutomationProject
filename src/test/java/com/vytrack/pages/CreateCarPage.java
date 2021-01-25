@@ -2,6 +2,7 @@ package com.vytrack.pages;
 
 import com.vytrack.utils.BrowserUtils;
 import com.vytrack.utils.Driver;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,8 +24,9 @@ public class CreateCarPage extends BasePage {
     public void clickOnCreateCar(){//since webelement is private, we need to have some method to make this WebElement work
 
         //synchronization issue
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
-        wait.until(ExpectedConditions.elementToBeClickable(createCarBtn)).click();
+//        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+//        wait.until(ExpectedConditions.elementToBeClickable(createCarBtn)).click();
+        BrowserUtils.clickOnElement(createCarBtn);
         System.out.println("Clicking on 'Create car' button");
     }
 
@@ -53,5 +55,11 @@ public class CreateCarPage extends BasePage {
 
         BrowserUtils.enterText(modelYearInputBox,ModelYear);
     }
+
+    //last step of save and close is in common step_definitions class,
+    //this save and close webElement is present on every page , so it is better to put it on one common page like on BasePage/ and in step_definitions like common step_definitions class
+    //in our project, like reset, cancel, navigate, save button are present for every page
+    //so we dont need to save this common button WebElement to every page seperately
+
 
 }

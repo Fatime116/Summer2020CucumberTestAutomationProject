@@ -52,15 +52,18 @@ public class CreateCarStepDefinitions {
 
         //get all the keys and values one by one
         map.forEach((key,value) -> System.out.println("Key: " + key + ", Value : " + value));
+        //Key: License Plate, Value : SDET
+        //Key: Model Year, Value : 2021
 
+        String licensePlate = map.get("License Plate");//map.get(key) return us value : SDET
+        String modelYear = map.get("Model Year");//map.get(key) return us value :2021
 
-        System.out.println("License plate: " + map.get("License Plate: "));//map.get(key) return us value : SDET
-        System.out.println("Model year : " + map.get("Model Year"));//map.get(key) return us value :2021
+        System.out.println("License plate: " + licensePlate);//License plate: SDET
+        System.out.println("Model year : " + modelYear);//Model year : 2021
 
+        createCarPage.enterLicensePlate(licensePlate);//you put the value
 
-        createCarPage.enterLicensePlate(map.get("License Plate"));
-
-        createCarPage.enterModelYear(map.get("Model Year"));
+        createCarPage.enterModelYear(modelYear);//you put the value
         //createCarPage.enterModelYear("2021");
 
         /*

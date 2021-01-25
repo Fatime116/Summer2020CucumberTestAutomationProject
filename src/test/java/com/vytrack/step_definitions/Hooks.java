@@ -4,6 +4,8 @@ import com.vytrack.utils.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
 import java.util.concurrent.TimeUnit;
 
@@ -44,8 +46,12 @@ public class Hooks {
     }
 
      @After//import @After from Cucumber
-    public void tearDown(){
+    public void tearDown(Scenario scenario){
        //this is coming from cucumber, hook after
+         if(scenario.isFailed()){
+             byte[] data = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
+             scenario.attach(data,"image/png",scenario.getName());
+         }
         Driver.closeDriver();//Runs automatically after every test scenario
         System.out.println(":::(^_^) End of Test Execution:::");
     }
