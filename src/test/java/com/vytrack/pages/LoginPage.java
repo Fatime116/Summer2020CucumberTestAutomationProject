@@ -1,9 +1,11 @@
 package com.vytrack.pages;
 
 import com.vytrack.utils.ConfigurationReader;
+import com.vytrack.utils.Driver;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage{
      //we put PageFactory.initElements(Driver.getDriver(), this); in the BasePage class constructor,
@@ -18,6 +20,7 @@ public class LoginPage extends BasePage{
     @FindBy(id = "prependedInput")//to make this @FindBy work, we need to use PageFactory class init elements method
     private WebElement username;//will prevent u using this WebElement directly in step_definitions
 
+
     @FindBy(id="prependedInput2")
     private WebElement password;
 
@@ -25,7 +28,7 @@ public class LoginPage extends BasePage{
     private WebElement submitButton;
 
     @FindBy(xpath="//div[@class='alert alert-error']")
-    public WebElement warningMessage;//when we make it private, we can enforce everyone to create methods here
+    private WebElement warningMessage;//when we make it private, we can enforce everyone to create methods here
 
     public String getWarningMessageText()  {//we make everyone enforce to use method instead of webElements, so =that our step_definitions class is clean
         try {//used try catch block, because we use these methods again in step_definitions

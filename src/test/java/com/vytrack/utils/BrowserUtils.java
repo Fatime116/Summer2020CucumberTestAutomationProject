@@ -20,6 +20,8 @@ public class BrowserUtils {
 
     public static void clickOnElement(WebElement element) {
 
+
+        BrowserUtils.wait(3);
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 

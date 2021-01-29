@@ -12,6 +12,8 @@ public class CreateCarStepDefinitions {
 
     @Given("user clicks on create car button")
     public void user_clicks_on_create_car_button() {
+
+
         createCarPage.clickOnCreateCar();
     }
 

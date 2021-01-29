@@ -26,6 +26,8 @@ public class CreateCarPage extends BasePage {
         //synchronization issue
 //        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
 //        wait.until(ExpectedConditions.elementToBeClickable(createCarBtn)).click();
+
+
         BrowserUtils.clickOnElement(createCarBtn);
         System.out.println("Clicking on 'Create car' button");
     }

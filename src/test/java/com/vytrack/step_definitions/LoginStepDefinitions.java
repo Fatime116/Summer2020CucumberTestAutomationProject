@@ -1,5 +1,6 @@
 package com.vytrack.step_definitions;
 
+import com.vytrack.pages.BasePage;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.utils.BrowserUtils;
 import com.vytrack.utils.ConfigurationReader;
