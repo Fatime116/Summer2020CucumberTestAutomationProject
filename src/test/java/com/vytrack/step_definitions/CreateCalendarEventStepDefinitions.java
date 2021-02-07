@@ -26,7 +26,7 @@ public class CreateCalendarEventStepDefinitions {
     @When("user adds new calendar event information")
     public void user_adds_new_calendar_event_information(Map<String,String> dataTable) {
 
-           String title = dataTable.get("Title");
+           String title = dataTable.get("Title");//value
            String description = dataTable.get("Description");
 
 

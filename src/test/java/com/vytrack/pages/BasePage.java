@@ -1,6 +1,6 @@
 package com.vytrack.pages;
 
-import com.vytrack.utils.BrowserUtils;
+
 import com.vytrack.utils.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -81,7 +81,7 @@ public abstract class BasePage {//it is abstract class, no one can create object
         //That spin also part of DOM, we just need to locate it, and use explicit wait and use invisibilityOfElement until this element is completely invisible.
         wait.until(ExpectedConditions.invisibilityOfAllElements(loaderMask));//
 
-        BrowserUtils.wait(3);//hard coded wait, if nothing works
+        ;//hard coded wait, if nothing works
         //wait for presence and ability co click on element
         WebElement tabElement = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(tabXpath)));
         wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
